@@ -1,28 +1,30 @@
 const firebaseUrl = 'https://shadow-kanban-default-rtdb.firebaseio.com/';
+const apiHash = '-Mpie3AnfVbEExpeCk0o';
+const buttonApi = `${firebaseUrl}/buttons/${apiHash}/buttons.json`;
 const buttonList = [];
+const buttonStatus = [];
+const interval = setInterval(() => update(), 1000);
 
-// httpGet(firebaseUrl + 'buttons.json', function(response) {
-//     console.log(response);
-// });
 
-fetch(firebaseUrl + 'buttons.json')
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch((err) => console.error(err));
+window.onload = onInit;
 
-async function onInit() {
-    let status;
-    buttonList = document.querySelectorAll('.button');
-    buttonList.forEach(button => {
-        status = getStatus();
-        updateButtonState(button, status);
-    });
+
+function onInit() {
+    getStatus();
 }
 
 
 function getStatus() {
-    const status = httpGet(firebaseUrl + 'buttons.json');
-    return status;
+  fetch(buttonApi)
+        .then(res => res.json())
+        .then(data => {
+            for (let key in data) {
+                let button = document.getElementById(key);
+                let status = data[key];
+                updateButtonState(button, status);
+            }
+        })
+        .catch((err) => console.error(err));
 }
 
 function updateButtonState(button, status) {
@@ -35,28 +37,15 @@ function updateButtonState(button, status) {
     }
 }
 
-function httpGet(url, callback) {
-    const xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", url, true );
-    xmlHttp.setRequestHeader('accept', 'application/json, text/plain, */*');
-    xmlHttp.send( null );
-    xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-            callback(xmlHttp.responseText);
-        }
-    };
-
-}
-
 function httpPost(url, data) {
     const xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "POST", url, false );
+    xmlHttp.open( "PATCH", url, false );
     xmlHttp.send( data );
     return xmlHttp.responseText;
 }
 
 function update() {
-
+    getStatus();
 }
 
 function toggleButtonState(button) {
@@ -73,8 +62,7 @@ function toggleButtonState(button) {
         status = true;
     }
 
-    httpPost(firebaseUrl + 'buttons/' + button.id, status);
-
+    httpPost(buttonApi, JSON.stringify({ [button.id]: status }));
 }
 
 /*
