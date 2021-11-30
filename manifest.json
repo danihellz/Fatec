@@ -45,7 +45,7 @@
     "id": "shadow-kanban",
     "start_url": "https://danihellz.github.io/ShadowKanban/",
     "display": "fullscreen",
-    "orientation": "landscape",
+    "orientation": "portrait",
     "theme_color": "#121741",
     "background_color": "#FAFAFA"
 }
