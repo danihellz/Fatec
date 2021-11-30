@@ -1,5 +1,7 @@
 .container {
     background-color: #09234A;
+    max-width: 100%;
+    max-height: max-content;
 }
 
 .title {
