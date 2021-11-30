@@ -3,7 +3,7 @@ const apiHash = '-Mpie3AnfVbEExpeCk0o';
 const buttonApi = `${firebaseUrl}/buttons/${apiHash}/buttons.json`;
 const buttonList = [];
 const buttonStatus = [];
-const interval = setInterval(() => update(), 3000);
+const interval = setInterval(() => update(), 1000);
 
 
 window.onload = onInit;
