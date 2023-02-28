@@ -3,7 +3,8 @@
 .imagem {
   background-image: url(daniel.png);
   background-size: cover;
-  background-position: center;
+  height: 100vh;
+  orientation: landscape;
 }
 
 .htmlFull {
