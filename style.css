@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+.imagem {
+  background-image: url(daniel.png);
+  background-size: cover;
+  height: 100vh;
+  orientation: landscape;
+}
+
 .htmlFull {
     background-color: #09234A;
 }
