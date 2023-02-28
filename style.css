@@ -2,9 +2,8 @@
 
 .imagem {
   background-image: url(daniel.png);
-  background-size: cover;
   height: 100vh;
-  orientation: landscape;
+  background-repeat: no-repeat;
 }
 
 .htmlFull {
